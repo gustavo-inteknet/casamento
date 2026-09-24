@@ -41,14 +41,18 @@ index.html              página principal
 presente.html           página de presentear (?id=<id>)
 css/style.css           estilos globais (tokens de cor/tipografia)
 js/config.js            chave PIX, nome recebedor, cidade, URL do Apps Script
+js/format.js            moeda, valor da cota, parse, escape HTML (puro)
+js/contagem.js          cálculo da contagem regressiva (puro)
 js/pix.js               geração do payload BR Code (puro, testável)
 js/api.js               chamadas ao Apps Script (GET lista, POST contribuição)
+js/exemplo.js           dados do modo demonstração
+js/ui.js                banner do modo demonstração
 js/home.js              contagem regressiva + render da lista
 js/presente.js          fluxo da página de presentear
 js/icons.js             ícones SVG dos presentes (mapa id-ícone → SVG)
 assets/                 ornamentos SVG, imagem Open Graph, favicon, placeholders
 apps-script/Code.gs     código do backend (colado manualmente no Apps Script)
-tests/pix.test.html     testes do payload PIX rodando no navegador
+tests/*.test.js         testes com `node --test` (format, contagem, pix, backend via node:vm)
 README.md               publicação, configuração da planilha, domínio próprio
 ```
 
@@ -80,7 +84,7 @@ Casos: `id` inexistente ou inativo → mensagem + link para a lista. Presente es
 - Normalização: remover acentos e caracteres fora do permitido; truncar nome/cidade.
 - `config.js` guarda **chave aleatória** do Nubank (nunca CPF/telefone), nome e cidade.
 - QR renderizado com biblioteca do cdnjs (ex.: `qrcode-generator`).
-- **Testes:** `tests/pix.test.html` valida CRC16 contra vetor conhecido e estrutura do payload; teste manual lendo o QR no app Nubank (confere valor e recebedor sem pagar).
+- **Testes:** `tests/pix.test.js` (Node) valida CRC16 contra vetor conhecido e estrutura do payload; teste manual lendo o QR no app Nubank (confere valor e recebedor sem pagar).
 
 ## Backend (Apps Script + Sheets)
 
@@ -117,7 +121,7 @@ Cotas vendidas por presente = soma da coluna `cotas`, limitada a `qtd_cotas` na 
 - Cotas inteiras entre 1 e `qtd_cotas`. Se exceder as restantes (corrida ou esgotado após a escolha), grava com `observacao = "excedente"` em vez de recusar. Leitura e gravação dentro de `LockService`.
 - Valor livre: número entre 1 e 100000.
 - Nome 1–80 caracteres; recado ≤ 1000; remover caracteres de controle; prefixar `'` em valores que comecem com `=`, `+`, `-`, `@` (evitar injeção de fórmula na planilha).
-- Códigos de erro: `nao_encontrado`, `cotas_invalidas`, `valor_invalido`, `nome_invalido`, `erro_interno`.
+- Códigos de erro: `nao_encontrado`, `cotas_invalidas`, `valor_invalido`, `nome_invalido`, `recado_invalido`, `acao_invalida`, `erro_interno`.
 
 ## Lista inicial de presentes
 
@@ -154,7 +158,7 @@ O `Code.gs` inclui uma função `configurarPlanilha()` que cria as abas, cabeça
 
 - Falha no GET da lista → mensagem "Não conseguimos carregar a lista agora. Tente novamente em instantes." + botão "Tentar novamente".
 - Falha no POST → mantém texto digitado, mostra erro e botão "Tentar novamente".
-- `config.js` sem chave PIX ou URL do Apps Script → aviso visível em modo desenvolvimento (console + banner), para evitar publicar incompleto.
+- `config.js` sem URL do Apps Script → **modo demonstração**: usa dados locais de exemplo, não grava nada e exibe banner + aviso no console. Sem chave PIX → erro visível ao tentar gerar o QR.
 
 ## Segurança
 
