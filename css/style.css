@@ -40,7 +40,7 @@ a { color: inherit; }
 .nav__links a:hover { color: var(--cinza-azul); }
 @media (max-width: 640px) {
   .nav__links { gap: .75rem; }
-  .nav__links li:first-child { display: none; }
+  .nav__links .so-desktop { display: none; }
   .nav__links a { font-size: .65rem; letter-spacing: .12em; }
 }
 
