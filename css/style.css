@@ -74,11 +74,16 @@ a { color: inherit; }
 .versiculo cite { display: block; margin-top: .75rem; font-style: normal; font-size: .9rem; letter-spacing: .1em; }
 
 /* O Casal */
-.casal { display: grid; gap: 32px; align-items: center; text-align: left; }
-@media (min-width: 768px) { .casal { grid-template-columns: 1fr 1.2fr; } }
+.casal { display: grid; gap: 32px; align-items: start; text-align: left; }
+@media (min-width: 768px) { .casal { grid-template-columns: 1fr 1.2fr; gap: 48px; } }
+.casal__fotos { display: grid; gap: 20px; }
 .casal__foto { aspect-ratio: 4 / 5; border: 1px solid var(--linha); padding: 8px; background: var(--branco); box-shadow: var(--sombra); }
+.casal__foto--larga { aspect-ratio: 3 / 2; }
 .casal__foto img { width: 100%; height: 100%; object-fit: cover; }
 .casal__texto p { margin: 0 0 1rem; }
+.casal__subtitulo { font-family: var(--fonte-script); font-weight: 400; font-size: 2.2rem; line-height: 1.2; margin: 0 0 1rem; }
+.casal__fecho { font-weight: 600; font-size: 1.25rem; margin-top: 1.5rem !important; }
+.casal__prece { font-style: italic; color: var(--marinho-2); }
 .placeholder { display: grid; place-items: center; height: 100%; padding: 16px; text-align: center; font-size: .95rem; color: var(--cinza-azul); background: repeating-linear-gradient(45deg, var(--creme-2), var(--creme-2) 10px, var(--creme) 10px, var(--creme) 20px); }
 p.placeholder { display: block; height: auto; border: 1px dashed var(--cinza-azul); background: none; font-style: italic; }
 

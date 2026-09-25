@@ -55,8 +55,8 @@ Faça commit e push. Em ~1 minuto o GitHub Pages publica.
 
 ## Personalizar
 
-- **Foto do casal:** salve como `assets/casal.jpg` e, em `index.html`, troque `<div class="placeholder">Foto do casal…</div>` por `<img src="assets/casal.jpg" alt="Gustavo e Caroline">`.
-- **História:** em `index.html`, seção `#casal`, substitua o `<p class="placeholder">` por seus parágrafos `<p>…</p>`.
+- **Fotos do casal:** `assets/casal.jpg` (vertical, recortada) e `assets/casal-2.jpg` (horizontal). Para trocar, substitua os arquivos mantendo os nomes.
+- **História:** em `index.html`, seção `#casal`, edite os parágrafos `<p>…</p>`.
 
 ## Rodar localmente
 
