@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentear · Gustavo & Caroline</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+  <nav class="nav" aria-label="Principal">
+    <div class="container">
+      <a class="nav__marca" href="index.html">G &amp; C</a>
+      <ul class="nav__links"><li><a href="index.html#presentes">Lista de presentes</a></li></ul>
+    </div>
+  </nav>
+
+  <main class="pagina-presente">
+    <a class="voltar" href="index.html#presentes">← Voltar à lista</a>
+
+    <section class="painel" id="etapa-carregando"><p>Carregando…</p></section>
+
+    <section class="painel" id="etapa-aviso" hidden>
+      <div class="presente__icone" data-icone="presente"></div>
+      <p id="aviso-texto"></p>
+      <div class="botoes">
+        <a class="botao botao--cheio" href="index.html#presentes">Ver a lista</a>
+        <button class="botao" type="button" id="aviso-tentar" hidden>Tentar novamente</button>
+      </div>
+    </section>
+
+    <section class="painel" id="etapa-escolha" hidden>
+      <div class="presente__icone" id="escolha-icone"></div>
+      <h1 id="escolha-nome"></h1>
+      <p id="escolha-descricao"></p>
+
+      <div id="bloco-cotas">
+        <p class="rotulo" id="escolha-cota"></p>
+        <div class="seletor">
+          <button type="button" id="menos" aria-label="Menos uma cota">−</button>
+          <output id="quantidade" aria-live="polite">1</output>
+          <button type="button" id="mais" aria-label="Mais uma cota">+</button>
+        </div>
+        <p class="dica" id="restantes"></p>
+      </div>
+
+      <label class="campo" id="bloco-livre" hidden>
+        <span>Valor do presente (R$)</span>
+        <input id="valor-livre" inputmode="decimal" autocomplete="off" placeholder="Ex.: 150,00">
+      </label>
+
+      <p class="total">Total: <strong id="total">R$ 0,00</strong></p>
+      <p class="erro" id="escolha-erro" hidden></p>
+      <button class="botao botao--cheio botao--largo" type="button" id="ir-pagamento">Continuar para o Pix</button>
+    </section>
+
+    <section class="painel" id="etapa-pagamento" hidden>
+      <h2>Pix</h2>
+      <p class="instrucao">Abra o app do seu banco, escolha <strong>Pix → Ler QR Code</strong> e aponte para o código abaixo.</p>
+      <div class="qr" id="qr"></div>
+      <p class="total"><strong id="pagamento-total"></strong></p>
+      <p class="recebedor">Confira se o recebedor é <strong id="recebedor"></strong>.</p>
+      <p class="dica">Está no celular? Use o Pix Copia e Cola:</p>
+      <div class="copia-cola" id="copia-cola"></div>
+      <div class="botoes">
+        <button class="botao" type="button" id="copiar">Copiar código Pix</button>
+      </div>
+      <button class="botao botao--cheio botao--largo" type="button" id="ja-paguei" style="margin-top:24px">Já fiz o Pix</button>
+      <div class="botoes"><button class="botao" type="button" id="voltar-escolha" style="border:0">← Alterar valor</button></div>
+    </section>
+
+    <section class="painel" id="etapa-recado" hidden>
+      <h2>Deixe um recado</h2>
+      <p class="instrucao">Seu recado será lido apenas pelos noivos.</p>
+      <form id="form-recado" novalidate>
+        <label class="campo">
+          <span>Seu nome</span>
+          <input id="nome" name="nome" maxlength="80" autocomplete="name" required>
+        </label>
+        <label class="campo">
+          <span>Recado (opcional)</span>
+          <textarea id="recado" name="recado" maxlength="1000"></textarea>
+        </label>
+        <p class="erro" id="recado-erro" hidden></p>
+        <button class="botao botao--cheio botao--largo" type="submit" id="enviar">Enviar</button>
+      </form>
+    </section>
+
+    <section class="painel" id="etapa-obrigado" hidden>
+      <div class="divisor" data-icone="coracoes"></div>
+      <h2>Muito obrigado!</h2>
+      <p id="obrigado-texto"></p>
+      <div class="botoes"><a class="botao botao--cheio" href="index.html#presentes">Voltar à lista</a></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/presente.js"></script>
+</body>
+</html>
