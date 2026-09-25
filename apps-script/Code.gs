@@ -166,7 +166,7 @@ function doPost(e) {
     console.error(err);
     return responderJson({ ok: false, erro: 'erro_interno' });
   } finally {
-    lock.releaseLock();
+    if (lock.hasLock()) lock.releaseLock();
   }
 }
 
