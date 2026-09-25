@@ -127,6 +127,8 @@ p.placeholder { display: block; height: auto; border: 1px dashed var(--cinza-azu
 .estado { padding: 32px 0; color: var(--cinza-azul); }
 .estado p { margin: 0 0 1rem; }
 
+.isca { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 .banner-demo { background: var(--marinho); color: var(--creme); text-align: center; font-size: .85rem; padding: 8px 16px; }
 
 .rodape { padding: 48px 16px; text-align: center; border-top: 1px solid var(--linha); }

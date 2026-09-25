@@ -16,7 +16,7 @@ export async function obterPresente(id) {
   return presentes.find((p) => p.id === id) || null;
 }
 
-export async function enviarContribuicao({ id, cotas, valor, nome, recado }) {
+export async function enviarContribuicao({ id, cotas, valor, nome, recado, site }) {
   if (modoDemo) {
     await new Promise((r) => setTimeout(r, 600));
     return { ok: true, excedente: false };
@@ -25,7 +25,7 @@ export async function enviarContribuicao({ id, cotas, valor, nome, recado }) {
   const resposta = await fetch(CONFIG.apiUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ action: 'contribuir', id, cotas, valor, nome, recado }),
+    body: JSON.stringify({ action: 'contribuir', id, cotas, valor, nome, recado, site }),
   });
   return resposta.json();
 }

@@ -13,6 +13,7 @@ const ERROS = {
   valor_invalido: 'Valor inválido.',
   nome_invalido: 'Informe seu nome (até 80 caracteres).',
   recado_invalido: 'O recado pode ter até 1000 caracteres.',
+  limite: 'Muitos envios neste momento. Tente novamente em alguns minutos.',
 };
 
 const estado = { presente: null, quantidade: 1, valor: 0, payload: '' };
@@ -159,9 +160,10 @@ $('form-recado').addEventListener('submit', async (ev) => {
       valor: estado.valor,
       nome,
       recado,
+      site: $('site').value,
     });
     if (!resposta.ok) throw Object.assign(new Error(resposta.erro), { codigo: resposta.erro });
-    $('obrigado-texto').textContent = `${nome}, seu carinho agora faz parte da nossa história. Mal podemos esperar para celebrar com você!`;
+    $('obrigado-texto').textContent = `${nome}, seu carinho agora faz parte da nossa história. Assim que confirmarmos o Pix, sua cota aparece na lista. Mal podemos esperar para celebrar com você!`;
     mostrar('obrigado');
   } catch (err) {
     console.error(err);

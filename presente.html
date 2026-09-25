@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Presentear · Gustavo & Caroline</title>
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,6 +87,7 @@
           <span>Recado (opcional)</span>
           <textarea id="recado" name="recado" maxlength="1000"></textarea>
         </label>
+        <label class="isca" aria-hidden="true">Não preencha<input id="site" name="site" tabindex="-1" autocomplete="off"></label>
         <p class="erro" id="recado-erro" hidden></p>
         <button class="botao botao--cheio botao--largo" type="submit" id="enviar">Enviar</button>
       </form>

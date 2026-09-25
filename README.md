@@ -50,8 +50,17 @@ Faça commit e push. Em ~1 minuto o GitHub Pages publica.
 | ordem | ordem de exibição |
 
 - Mudanças aparecem no site na próxima vez que a página for aberta.
-- **Contribuicoes**: cada linha é um "Já fiz o Pix" com nome e recado. Confira com o extrato do Nubank. Se alguém registrou e não pagou, **apague a linha** e a cota volta a ficar disponível. Uma linha repetida (convidado tentou enviar de novo) também pode ser apagada.
-- `observacao = excedente`: a pessoa pagou quando as cotas já tinham acabado (corrida entre convidados).
+- **Contribuicoes**: cada linha é um "Já fiz o Pix" com nome e recado, e entra **pendente** (caixa `confirmado` desmarcada).
+  - Confira o extrato do Nubank e **marque `confirmado`**: só então a cota sai da lista pública.
+  - Pix não recebido ou linha repetida: deixe desmarcado ou apague a linha.
+- `observacao = excedente`: a pessoa pagou quando as cotas (confirmadas) já tinham acabado.
+- Proteções: o servidor aceita até 30 envios a cada 10 minutos e ignora envios de robôs (campo-isca invisível).
+
+### Atualizar o Apps Script após mudanças no `Code.gs`
+
+1. Extensões → Apps Script: substitua todo o código pelo `apps-script/Code.gs` atual e salve.
+2. Execute `configurarPlanilha` (seguro rodar de novo: não apaga dados, só adiciona colunas novas) e autorize se o Google pedir.
+3. **Implantar → Gerenciar implantações → lápis → Versão: Nova versão → Implantar.** A URL `/exec` continua a mesma.
 
 ## Personalizar
 

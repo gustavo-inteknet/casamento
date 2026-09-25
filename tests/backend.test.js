@@ -14,9 +14,11 @@ const PRESENTES = [
   { id: 'livre', nome: 'Livre', descricao: '', icone: 'livre', imagem: '', valor_total: 0, qtd_cotas: 0, ativo: true, ordem: 4 },
 ];
 const CONTRIB = [
-  { presente_id: 'cafe', cotas: 2 },
-  { presente_id: 'sofa', cotas: 3 },
-  { presente_id: 'sofa', cotas: 2 },
+  { presente_id: 'cafe', cotas: 2, confirmado: true },
+  { presente_id: 'sofa', cotas: 3, confirmado: true },
+  { presente_id: 'sofa', cotas: 2, confirmado: 'TRUE' },
+  { presente_id: 'sofa', cotas: 10, confirmado: false },
+  { presente_id: 'sofa', cotas: 7, confirmado: '' },
 ];
 
 test('linhasParaObjetos usa cabeçalho e ignora linhas vazias', () => {
@@ -38,13 +40,27 @@ test('montarPresentes filtra inativos, ordena e soma cotas', () => {
 });
 
 test('montarPresentes limita vendidas a qtd_cotas', () => {
-  const r = plain(ctx.montarPresentes(PRESENTES, [...CONTRIB, { presente_id: 'cafe', cotas: 1 }]));
+  const r = plain(ctx.montarPresentes(PRESENTES, [...CONTRIB, { presente_id: 'cafe', cotas: 1, confirmado: true }]));
   assert.equal(r[0].cotas_vendidas, 2);
 });
 
 test('montarPresentes aceita "TRUE" textual em ativo', () => {
   const r = plain(ctx.montarPresentes([{ ...PRESENTES[0], ativo: 'TRUE' }], []));
   assert.equal(r.length, 1);
+});
+
+test('montarPresentes conta apenas contribuições confirmadas', () => {
+  const pendentes = CONTRIB.map((c) => ({ ...c, confirmado: false }));
+  const r = plain(ctx.montarPresentes(PRESENTES, pendentes));
+  assert.equal(r.find((p) => p.id === 'sofa').cotas_vendidas, 0);
+  assert.equal(r.find((p) => p.id === 'cafe').esgotado, false);
+});
+
+test('montarPresentes aceita apenas imagens https', () => {
+  const com = (imagem) => plain(ctx.montarPresentes([{ ...PRESENTES[0], imagem }], []))[0].imagem;
+  assert.equal(com('https://exemplo.com/a.jpg'), 'https://exemplo.com/a.jpg');
+  assert.equal(com('http://exemplo.com/a.jpg'), '');
+  assert.equal(com('javascript:alert(1)'), '');
 });
 
 const lista = () => ctx.montarPresentes(PRESENTES, CONTRIB);
@@ -90,4 +106,9 @@ test('protege contra injeção de fórmula e remove controles', () => {
   assert.equal(r.registro.recado, 'oi\nbeijos');
   assert.equal(ctx.protegerFormula('+55'), "'+55");
   assert.equal(ctx.protegerFormula('normal'), 'normal');
+});
+
+test('campo-isca preenchido é ignorado sem erro', () => {
+  const r = plain(ctx.validarContribuicao({ id: 'sofa', cotas: 1, nome: 'Robô', site: 'http://spam' }, lista()));
+  assert.deepEqual(r, { ok: true, ignorar: true });
 });
