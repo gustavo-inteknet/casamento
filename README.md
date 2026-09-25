@@ -2,7 +2,7 @@
 
 Site estático (GitHub Pages) com informações do casamento e lista de presentes em cotas pagos via Pix. Os recados e o controle de cotas ficam numa planilha Google privada.
 
-- Site: https://gustavo-inteknet.github.io/casamento/
+- Site: https://casamento.gaioski.com.br/
 - Painel de administração: a planilha Google (abas **Presentes** e **Contribuicoes**)
 
 ## 1. Chave Pix
@@ -70,15 +70,16 @@ Testes automatizados (Node 18+):
 npm test
 ```
 
-## Domínio próprio (futuro)
+## Domínio próprio
 
-1. Registre o domínio (ex.: Registro.br).
-2. Crie o arquivo `CNAME` na raiz com o domínio (ex.: `gustavoecaroline.com.br`) e faça push.
-3. No DNS do domínio:
-   - Domínio raiz: registros **A** para `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `www`: registro **CNAME** para `gustavo-inteknet.github.io`
-4. GitHub → repositório → **Settings → Pages**: confirme o domínio e marque **Enforce HTTPS**.
-5. Atualize a URL da tag `og:image` em `index.html` para o novo domínio.
+O site usa **casamento.gaioski.com.br** (domínio no Registro.br, DNS no Cloudflare):
+
+- Arquivo `CNAME` na raiz do repositório com `casamento.gaioski.com.br`.
+- Cloudflare → DNS: registro **CNAME** `casamento` → `gustavo-inteknet.github.io`, com proxy **desligado** (nuvem cinza, "Somente DNS"). Com o proxy ligado, o GitHub não consegue emitir o certificado HTTPS.
+- GitHub → repositório → **Settings → Pages**: domínio `casamento.gaioski.com.br` e **Enforce HTTPS** marcado.
+- As tags `og:url` e `og:image` em `index.html` apontam para o domínio.
+
+Para trocar de domínio: atualize o `CNAME`, o DNS e as duas tags `og:*`.
 
 Referência: https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site
 
