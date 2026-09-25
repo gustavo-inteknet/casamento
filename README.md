@@ -35,22 +35,22 @@ apiUrl: 'https://script.google.com/macros/s/.../exec',
 
 Faça commit e push. Em ~1 minuto o GitHub Pages publica.
 
-**Teste obrigatório antes de divulgar:** abra um presente, gere o QR e leia com o app do Nubank. Confira valor e recebedor na tela de confirmação (não precisa concluir o pagamento).
+**Teste obrigatório antes de divulgar:** abra um presente, gere o QR e leia com o app do Nubank. Confira valor e recebedor na tela de confirmação (não precisa concluir o pagamento). Depois, clique em "Já fiz o Pix", envie um recado de teste e confirme que a linha aparece na aba **Contribuicoes**; em seguida apague-a. Isso valida a implantação do Apps Script (acesso "Qualquer pessoa" e URL `/exec`).
 
 ## Administração (planilha)
 
 | Coluna | Uso |
 |---|---|
-| id | identificador único, sem espaços (não altere depois de divulgar) |
+| id | identificador único, sem espaços (não altere depois de divulgar); use letras (não apenas números, ex.: `001`) |
 | nome / descricao | texto exibido |
 | icone | ícone do presente (`passagens`, `hotel`, `jantar`, `barco`, `geladeira`, `sofa`, `airfryer`, `cafe`, `churrasco`, `mercado`, `plantinha`, `pizza`, `sogra`, `livre`, `presente`) |
 | imagem | opcional: URL de uma foto (substitui o ícone) |
 | valor_total / qtd_cotas | valor da cota = total ÷ cotas. **0 e 0 = valor livre** |
-| ativo | desmarque para esconder o presente |
+| ativo | desmarque para esconder o presente; linhas novas precisam da caixa marcada (célula vazia = oculto) |
 | ordem | ordem de exibição |
 
 - Mudanças aparecem no site na próxima vez que a página for aberta.
-- **Contribuicoes**: cada linha é um "Já fiz o Pix" com nome e recado. Confira com o extrato do Nubank. Se alguém registrou e não pagou, **apague a linha** e a cota volta a ficar disponível.
+- **Contribuicoes**: cada linha é um "Já fiz o Pix" com nome e recado. Confira com o extrato do Nubank. Se alguém registrou e não pagou, **apague a linha** e a cota volta a ficar disponível. Uma linha repetida (convidado tentou enviar de novo) também pode ser apagada.
 - `observacao = excedente`: a pessoa pagou quando as cotas já tinham acabado (corrida entre convidados).
 
 ## Personalizar

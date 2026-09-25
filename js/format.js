@@ -9,7 +9,12 @@ export function valorCota(total, qtd) {
 }
 
 export function parseMoeda(texto) {
-  const limpo = String(texto ?? '').replace(/R\$|\s/g, '').replace(/\./g, '').replace(',', '.');
+  const semPrefixo = String(texto ?? '').replace(/R\$|\s/g, '');
+  // sem vírgula e com ponto seguido de 1-2 dígitos: é decimal, não milhar (teclado Android)
+  if (!semPrefixo.includes(',') && /^\d+\.\d{1,2}$/.test(semPrefixo)) {
+    return Number(semPrefixo);
+  }
+  const limpo = semPrefixo.replace(/\./g, '').replace(',', '.');
   if (!/^\d+(\.\d{1,2})?$/.test(limpo)) return NaN;
   return Number(limpo);
 }

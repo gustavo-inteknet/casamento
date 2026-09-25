@@ -109,7 +109,13 @@ $('ir-pagamento').addEventListener('click', () => {
     cidade: CONFIG.cidade,
     valor: estado.valor,
   });
-  $('qr').innerHTML = qrSvg(estado.payload);
+  try {
+    $('qr').innerHTML = qrSvg(estado.payload);
+    $('qr').hidden = false;
+  } catch (err) {
+    console.error(err);
+    $('qr').hidden = true;
+  }
   $('copia-cola').textContent = estado.payload;
   $('pagamento-total').textContent = formatarMoeda(estado.valor);
   $('recebedor').textContent = CONFIG.nomeRecebedor;

@@ -22,6 +22,13 @@ test('parseMoeda aceita formatos comuns', () => {
   assert.equal(parseMoeda(' 7 '), 7);
 });
 
+test('parseMoeda aceita ponto como decimal quando não há vírgula', () => {
+  assert.equal(parseMoeda('50.5'), 50.5);
+  assert.equal(parseMoeda('50.00'), 50);
+  assert.equal(parseMoeda('1.234'), 1234);
+  assert.equal(parseMoeda('1.234,56'), 1234.56);
+});
+
 test('parseMoeda rejeita entradas inválidas', () => {
   assert.ok(Number.isNaN(parseMoeda('')));
   assert.ok(Number.isNaN(parseMoeda('abc')));
