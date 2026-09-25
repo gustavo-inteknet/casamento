@@ -112,3 +112,9 @@ test('campo-isca preenchido é ignorado sem erro', () => {
   const r = plain(ctx.validarContribuicao({ id: 'sofa', cotas: 1, nome: 'Robô', site: 'http://spam' }, lista()));
   assert.deepEqual(r, { ok: true, ignorar: true });
 });
+
+test('ultimaLinhaPreenchida ignora linhas vazias no fim (caixas de seleção contam como preenchidas no Sheets)', () => {
+  assert.equal(ctx.ultimaLinhaPreenchida([['data_hora'], [''], ['']]), 1);
+  assert.equal(ctx.ultimaLinhaPreenchida([['data_hora'], ['x'], ['y'], [''], ['']]), 3);
+  assert.equal(ctx.ultimaLinhaPreenchida([['data_hora'], ['x'], [''], ['z'], ['']]), 4);
+});

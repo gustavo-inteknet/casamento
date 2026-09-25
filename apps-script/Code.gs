@@ -131,6 +131,14 @@ function validarContribuicao(dados, presentes) {
   };
 }
 
+/** Índice (1-based) da última linha com a coluna A preenchida; caixas de seleção vazias não contam. */
+function ultimaLinhaPreenchida(colunaA) {
+  for (var i = colunaA.length - 1; i >= 0; i--) {
+    if (colunaA[i][0] !== '' && colunaA[i][0] != null) return i + 1;
+  }
+  return 0;
+}
+
 /* ---------- Integração com Google Sheets ---------- */
 
 function aba(nome) {
@@ -157,6 +165,15 @@ function limiteExcedido() {
   return total > LIMITE_ENVIOS;
 }
 
+/** Grava na primeira linha livre (appendRow iria para o fim, depois das caixas de seleção). */
+function gravarContribuicao(valores) {
+  var folha = aba(ABA_CONTRIBUICOES);
+  var linha = ultimaLinhaPreenchida(folha.getRange(1, 1, folha.getMaxRows(), 1).getValues()) + 1;
+  if (linha > folha.getMaxRows()) folha.insertRowsAfter(folha.getMaxRows(), 100);
+  folha.getRange(linha, 1, 1, valores.length).setValues([valores]);
+  folha.getRange(linha, CABECALHO_CONTRIBUICOES.indexOf('confirmado') + 1).insertCheckboxes();
+}
+
 function doGet(e) {
   if (!e || !e.parameter || e.parameter.action !== 'presentes') return responderJson({ ok: false, erro: 'acao_invalida' });
   try {
@@ -177,7 +194,7 @@ function doPost(e) {
     var resultado = validarContribuicao(dados, lerPresentes());
     if (!resultado.ok || resultado.ignorar) return responderJson({ ok: resultado.ok, erro: resultado.erro });
     var r = resultado.registro;
-    aba(ABA_CONTRIBUICOES).appendRow([new Date(), r.presente_id, r.presente_nome, r.cotas, r.valor, r.nome, r.recado, r.observacao, false]);
+    gravarContribuicao([new Date(), r.presente_id, r.presente_nome, r.cotas, r.valor, r.nome, r.recado, r.observacao, false]);
     return responderJson({ ok: true, excedente: r.observacao === 'excedente' });
   } catch (err) {
     console.error(err);
