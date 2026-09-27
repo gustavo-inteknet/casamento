@@ -19,16 +19,15 @@ var PRESENTES_INICIAIS = [
   ['hotel', 'Diárias num hotel pé na areia', 'Acordar com barulho de mar e sem despertador.', 'hotel', '', 2400, 24, true, 2],
   ['jantar', 'Jantar romântico à luz de velas', 'Uma noite especial, sem louça para lavar.', 'jantar', '', 600, 6, true, 3],
   ['barco', 'Passeio de barco ao pôr do sol', 'O pôr do sol mais bonito da viagem, visto do mar.', 'barco', '', 500, 10, true, 4],
-  ['geladeira', 'Geladeira nova (que não faz barulho)', 'Silenciosa, espaçosa e sempre cheia de coisa boa.', 'geladeira', '', 4000, 40, true, 5],
+  ['lavaloucas', 'Máquina de lavar louças (para não ter brigas)', 'Silenciosa, espaçosa e sempre cheia de coisa boa.', 'lavaloucas', '', 4000, 40, true, 5],
   ['sofa', 'Sofá para maratonar séries', 'Confortável o bastante para "só mais um episódio".', 'sofa', '', 3000, 30, true, 6],
-  ['airfryer', 'Air fryer para o noivo aprender a cozinhar', 'Um voto de confiança nos dotes culinários do noivo.', 'airfryer', '', 500, 10, true, 7],
+  ['comida', 'Patrocínio para não pedir comida pelo aplicativo', 'Um voto de confiança nos dotes culinários dos noivos.', 'comida', '', 500, 10, true, 7],
   ['cafe', 'Máquina de café para sobreviver às segundas', 'Combustível oficial das segundas-feiras.', 'cafe', '', 800, 16, true, 8],
   ['churrasco', 'Kit churrasco para os domingos em família', 'Para reunir família e amigos aos domingos.', 'churrasco', '', 400, 8, true, 9],
-  ['mercado', 'Primeira compra do mercado a dois', 'O primeiro carrinho cheio da nossa casa.', 'mercado', '', 300, 6, true, 10],
-  ['plantinha', 'Plantinha para testar se estamos prontos para um pet', 'Se ela sobreviver, pensamos no cachorro.', 'plantinha', '', 100, 2, true, 11],
-  ['pizza', 'Pizza de reconciliação da primeira briga', 'Porque toda discussão termina melhor com pizza.', 'pizza', '', 150, 3, true, 12],
-  ['sogra', 'Seguro contra a sogra', 'Cobertura completa para visitas surpresa. (Brincadeira, sogrinha!)', 'sogra', '', 250, 5, true, 13],
-  ['livre', 'Contribua com o que o coração mandar', 'Escolha o valor que desejar. Todo carinho é bem-vindo.', 'livre', '', 0, 0, true, 14]
+  ['drink', 'Um drink a beira mar', 'Para relaxar na beira mar', 'drink', '', 300, 6, true, 10],
+  ['aventura', 'Uma aventura a dois', 'Para incentivar o nosso instinto aventureiro', 'aventura', '', 100, 2, true, 11],
+  ['pizza', 'Pizza de reconciliação', 'Porque toda discussão termina melhor com pizza.', 'pizza', '', 150, 3, true, 12],
+  ['livre', 'Contribua com o que o coração mandar', 'Escolha o valor que desejar. Todo carinho é bem-vindo.', 'livre', '', 0, 0, true, 13]
 ];
 
 /* ---------- Regras puras (testadas em tests/backend.test.js) ---------- */
