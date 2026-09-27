@@ -43,7 +43,7 @@ Faça commit e push. Em ~1 minuto o GitHub Pages publica.
 |---|---|
 | id | identificador único, sem espaços (não altere depois de divulgar); use letras (não apenas números, ex.: `001`) |
 | nome / descricao | texto exibido |
-| icone | ícone do presente (`passagens`, `hotel`, `jantar`, `barco`, `geladeira`, `sofa`, `airfryer`, `cafe`, `churrasco`, `mercado`, `plantinha`, `pizza`, `sogra`, `livre`, `presente`) |
+| icone | ícone do presente (`passagens`, `hotel`, `jantar`, `barco`, `geladeira`, `sofa`, `airfryer`, `cafe`, `churrasco`, `mercado`, `plantinha`, `pizza`, `sogra`, `drink`, `aventura`, `comida`, `lavaloucas`, `livre`, `presente`) |
 | imagem | opcional: URL de uma foto (substitui o ícone) |
 | valor_total / qtd_cotas | valor da cota = total ÷ cotas. **0 e 0 = valor livre** |
 | ativo | desmarque para esconder o presente; linhas novas precisam da caixa marcada (célula vazia = oculto) |
